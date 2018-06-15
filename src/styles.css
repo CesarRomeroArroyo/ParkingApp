@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+
+body { 
+    background: url('assets/images/parking.png') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.logincard {
+    margin: 40% 10% !important;
+}
+
+.iniciocard {
+    margin: 20% 10% !important;
+}
+
+.btn, .btn-large {
+    background-color: #0084e4 !important;
+}
+
+.navParking {
+    background: #0084e4;
+    font-size: 12px;
+}
+
+
+
+
+
+

@@ -1,0 +1,26 @@
+
+<div class=" col s12 m12" style="text-align: justify;">
+  <div class="card z-depth-2 logincard">
+    <div class="card-content black-text">
+        <div class="container" style="text-align: center">
+            <div class="col s12">
+                <b>Controla el parqueo y realiza tus reportes de tiempo </b>
+                <br/>
+                <label><b>Email</b></label>
+                  <input id="userEmail" name="userEmail" type="email" style="text-align: center" [(ngModel)]="user.userEmail" >
+              </div>
+              <label><b>Contraseña </b></label>
+              <input id="userPassword" name="userPassword" type="password" style="text-align: center" [(ngModel)]="user.userPassword">
+            <div class="col s12">
+                <a class="waves-effect waves-light btn-large" style="width: 99%" (click)="onLogin()"><i class="fa fa-sign-in"></i> Ingresar</a>                                
+            </div>
+            <div class="col s12">  
+                <br/>
+            </div>
+            <div class="col s12">
+                <a class="waves-effect waves-light" style="width: 99%" >Registrar Nuevo Usuario</a>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

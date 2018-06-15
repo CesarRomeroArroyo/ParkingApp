@@ -1,0 +1,20 @@
+<div id="modalVehiculo" class="modal">
+    <div class="modal-content" style="text-align: center">
+      
+      Selecciona tu Vehiculo:
+      <div class="col s12"> 
+        <select class="browser-default" [(ngModel)]="vehiculoSeleccionado">
+          <option value="" disabled selected>Selecciona uno de tus vehiculos</option>
+          <option value="{{vehiculo.vehicleBrand}} - {{vehiculo.vehicleLicensePlate}}" *ngFor="let vehiculo of vehiculos">
+            {{vehiculo.vehicleBrand}} - {{vehiculo.vehicleLicensePlate}}
+          </option>
+          
+        </select>
+      </div>
+      <div class="col s12">                                
+          <button class="waves-effect waves-light btn-large modal-close" style="width: 99%" (click)="seleccionarVehiculo()" >
+              <i class="fa fa-check"></i> Aceptar
+          </button>
+      </div>
+    </div>
+  </div>
