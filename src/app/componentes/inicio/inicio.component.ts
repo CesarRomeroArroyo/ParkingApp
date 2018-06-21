@@ -20,10 +20,12 @@ declare var $: any;
 })
 export class InicioComponent implements OnInit {
   parkings: ParkingModel[];
+  parkingsSearch: ParkingModel[];
   pakingSelect: ParkingModel;
   user: UserModel;
   vehiculos: VehicleModel[];
   getParking: boolean;
+  parkingKey: number;
   constructor(private service: FirebaseService, private local: LocastorageService) { }
 
   ngOnInit() {
@@ -32,6 +34,7 @@ export class InicioComponent implements OnInit {
     this.service.obtenerParqueaderos().subscribe(
       data => {
         this.parkings = data;
+        this.parkingsSearch = this.parkings;
       }
     );
   }
@@ -54,22 +57,44 @@ export class InicioComponent implements OnInit {
   desocuparParqueadero(parking) {
     parking.parkingState = true;
     parking.userInParking = '';
+    parking.userVehicle = '';
     this.getParking = false;
     this.service.actualizarDatos('parking', parking, parking.id);
     Swal('', 'Has liberado el parqueadero', 'success');
   }
 
-
-
   validarBotonDesocupar(parking) {
     if (!parking.userInParking) {
       return false;
     }
-    return (this.user.id === parking.userInParking.id && !parking.parkingState);
+    const retorno = (this.user.id === parking.userInParking.id && !parking.parkingState);
+    return retorno;
   }
 
   validarBotonMensaje(parking) {
-    return (this.user.id !== parking.userInParking.id && parking.parkingState && this.getParking);
+    const retorno = (this.user.id !== parking.userInParking.id && !parking.parkingState);
+    return retorno;
+  }
+
+  validarBotonTomar(parking) {
+    if (this.validarOcupado()) {
+      return false;
+    }
+    const retorno = this.validarBotonDesocupar(parking) === false && this.validarBotonMensaje(parking) === false;
+    return retorno;
+  }
+
+  validarOcupado() {
+    for (const park of this.parkings) {
+      if (park.userInParking.id === this.user.id && !park.parkingState) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  buscarParqueadero() {
+
   }
 
 }

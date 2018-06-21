@@ -4,5 +4,5 @@ export class ParkingModel {
     parkingNumber: number;
     parkingState: boolean;
     userInParking: UserModel;
-    userVehicle: string;
+    userVehicle?: string;
 }
