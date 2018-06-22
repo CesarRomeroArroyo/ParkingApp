@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { LocastorageService } from '../../servicios/locastorage.service';
 
 @Component({
   selector: 'app-parkingapp',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParkingappComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private local: LocastorageService) { }
 
   ngOnInit() {
+    if (!this.local.obtener('PARKING_USER')) {
+      // this.router.navigate(['/login']);
+    }
   }
 
 }

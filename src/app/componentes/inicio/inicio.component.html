@@ -1,6 +1,6 @@
 <nav class="navParking">
     <div class="side-navbar">
-      <div style="padding-bottom: 10px;  text-align: center"><a class="brand-logo">Parqueaderos</a></div>
+      <div style="padding-bottom: 10px;  text-align: center"><a class="brand-logo">RepoParkApp</a></div>
       <a data-activates="slide-out" class="button-collapse">
 
           <i class="fa fa-bars fa-2x" style="margin-left: 10px;"></i>
@@ -8,60 +8,49 @@
     </div>
     <ul id="slide-out" class="side-nav" >
       
-      <li><a [routerLink]="['usuario']">Datos del Usuario</a></li>
+      <li><a [routerLink]="['/usuario']">Datos del Usuario</a></li>
       
     </ul>
 </nav>
-<router-outlet></router-outlet>
-
-    <!--<div class="col s12 m12">
-      <div class="card-panel">
-          <form >
-              <div class="row">
-                  <label for="email" data-error="wrong" data-success="right">Buscar Parqueadero</label>
-                <div class="input-field col s12">
-                  <input id="email" type="text" class="validate" style="text-align: center">
+<div class="container">
+  <div class=" col s12 m12 carousel-item" href="1" style="text-align: justify;" *ngFor="let parking of parkingsSearch">
+    <div class="card z-depth-2 ">
+      <div class="card-content black-text">
+          <div class="container" style="text-align: center">
+                <b>Parqueadero</b>
+                <h2>{{parking.parkingNumber}}</h2>
+                <div *ngIf="!parking.parkingState">
+                    <i class="fa fa-user"></i> {{parking.userInParking.userName}}
+                </div> 
+                <div *ngIf="!parking.parkingState">
+                    <i class="fa fa-car"></i> {{parking.userVehicle}}
                 </div>
-              </div>
-            </form>
+                <div class="col s12">
+                    <button *ngIf="validarBotonTomar(parking)"  class="waves-effect waves-light btn-large" style="width: 99%"  (click)="tomarParqueadero(parking)">
+                      <i class="fa fa-check"></i>
+                    </button>
+                    
+                    <button *ngIf="validarBotonDesocupar(parking)"  class="waves-effect waves-light btn-large red" style="width: 99%" (click)="desocuparParqueadero(parking)">
+                      <i class="fa fa-times"></i>
+                    </button>
+
+                    <button *ngIf="validarBotonMensaje(parking)" class="waves-effect waves-light btn-large green" style="width: 99%">
+                      <i class="fa fa-envelope"></i>
+                    </button>
+                </div>
+                
+          </div>
       </div>
-    </div>-->
-
-
-<div class=" col s12 m12 carousel-item" href="1" style="text-align: justify;" *ngFor="let parking of parkingsSearch">
-  <div class="card z-depth-2 ">
-    <div class="card-content black-text">
-        <div class="container" style="text-align: center">
-              <b>Parqueadero</b>
-              <h2>{{parking.parkingNumber}}</h2>
-              <div *ngIf="!parking.parkingState">
-                  <i class="fa fa-user"></i> {{parking.userInParking.userName}}
-              </div> 
-              <div *ngIf="!parking.parkingState">
-                  <i class="fa fa-car"></i> {{parking.userVehicle}}
-              </div>
-              <div class="col s12">
-                  <button *ngIf="validarBotonTomar(parking)"  class="waves-effect waves-light btn-large" style="width: 99%"  (click)="tomarParqueadero(parking)">
-                    <i class="fa fa-check"></i>
-                  </button>
-                  
-                  <button *ngIf="validarBotonDesocupar(parking)"  class="waves-effect waves-light btn-large red" style="width: 99%" (click)="desocuparParqueadero(parking)">
-                    <i class="fa fa-times"></i>
-                  </button>
-
-                  <button *ngIf="validarBotonMensaje(parking)" class="waves-effect waves-light btn-large green" style="width: 99%">
-                    <i class="fa fa-envelope"></i>
-                  </button>
-              </div>
-              
-        </div>
     </div>
   </div>
 </div>
-
 <app-vehiculo-seleccionado-modal [vehiculos]="vehiculos" (vehiculeSeleted)="guardarParqueaderoTomado($event)"></app-vehiculo-seleccionado-modal>
 
 
-
+<div class="fixed-action-btn">
+    <a class="btn-floating btn-large red">
+      <i class="fa fa-comments"></i>
+    </a>
+  </div>
 
 

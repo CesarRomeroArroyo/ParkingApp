@@ -1,21 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   isLogged: boolean;
 
-  constructor() {
+  constructor(private router: Router) {
     this.isLogged = false;
   }
-  onLogIn ($event) {
+
+  onLogIn () {
     this.isLogged = true;
   }
 
-  onLogOut ($event) {
+  onLogOut () {
     this.isLogged = false;
+  }
+
+  ngAfterViewInit(): void {
+    document.addEventListener('backbutton', function(e) {
+      if (document.getElementById('#homepage')) {
+          e.preventDefault();
+      }
+   }, false);
   }
 }

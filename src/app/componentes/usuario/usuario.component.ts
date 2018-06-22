@@ -30,10 +30,17 @@ export class UsuarioComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         this.local.eliminar('PARKING_USER');
-        this.router.navigate(['/login']);
+        this.router.navigate(['']);
       } else if (result.dismiss === Swal.DismissReason.cancel) {
       }
     });
+  }
+
+  actualizarUsuario() {
+    this.local.eliminar('PARKING_USER');
+    this.local.agregar('PARKING_USER', JSON.stringify([this.user]));
+    this.service.actualizarDatos('users', this.user, this.user.id);
+    Swal('', 'Datos del usuario actualizados', 'success');
   }
 
 }

@@ -6,6 +6,8 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    padding-right: 0px !important;
+    width: 100% !important;
 }
 
 .logincard {

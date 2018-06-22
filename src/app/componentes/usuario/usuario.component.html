@@ -1,7 +1,7 @@
 <nav class="navParking">
     <div class="side-navbar">
-      <div style="padding-bottom: 10px;  text-align: center"><a class="brand-logo">Parqueaderos</a></div>
-      <a class="button-collapse" [routerLink]="['']">
+      <div style="padding-bottom: 10px;  text-align: center"><a class="brand-logo">RepoParkApp</a></div>
+      <a class="button-collapse" [routerLink]="['/inicio']">
 
           <i class="fa fa-arrow-left fa-2x" style="margin-left: 10px;"></i>
       </a>
@@ -12,17 +12,20 @@
 <div class="card z-depth-2">
   <div class="card-content black-text">
       <div class="container">
+            <div class="col s12 center">
+                <i class="fa fa-user fa-4x"></i>
+            </div>
             <div class="col s12">
               <label><b>Nombre</b></label>
                 <input id="nombre" name="nombre" type="text" style="text-align: center" [(ngModel)]="user.userName">
             </div>
             <div class="col s12">
               <label><b># Celular</b></label>
-                <input id="celular" name="celualar" type="text" style="text-align: center" [(ngModel)]="user.userPhone">
+                <input id="celular" name="celualar" type="number" style="text-align: center" [(ngModel)]="user.userPhone">
             </div>
             <div class="col s12">
               <label><b>Email</b></label>
-                <input id="correo" name="correo" type="text" style="text-align: center" [(ngModel)]="user.userEmail" readonly>
+                <input id="correo" name="correo" type="email" style="text-align: center" [(ngModel)]="user.userEmail" readonly>
             </div>
             <div class="col s12">
               <label><b>Contraseña</b></label>
@@ -30,7 +33,7 @@
             </div>
             
           <div class="col s12">
-              <a class="waves-effect waves-light btn-large" style="width: 99%" ><i class="fa fa-pencil"></i> Actualizar</a>
+              <a class="waves-effect waves-light btn-large" style="width: 99%" (click)="actualizarUsuario()" ><i class="fa fa-pencil"></i> Actualizar</a>
           </div>
           <br/>
           <div class="col s12">
