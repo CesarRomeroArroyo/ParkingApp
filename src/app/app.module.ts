@@ -9,20 +9,31 @@ import { environment } from '../environments/environment';
 import { LoginComponent } from './componentes/login/login.component';
 import { InicioComponent } from './componentes/inicio/inicio.component';
 import { VehiculoSeleccionadoModalComponent } from './componentes/shared/vehiculo-seleccionado-modal/vehiculo-seleccionado-modal.component';
+import { UsuarioComponent } from './componentes/usuario/usuario.component';
+
+import { APP_ROUTING } from './app.routes';
+import { AppSettings } from './app.settings';
+import { ParkingappComponent } from './componentes/parkingapp/parkingapp.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     InicioComponent,
-    VehiculoSeleccionadoModalComponent
+    VehiculoSeleccionadoModalComponent,
+    UsuarioComponent,
+    ParkingappComponent
   ],
   imports: [
     BrowserModule,
+    APP_ROUTING,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule
   ],
-  providers: [],
+  providers: [
+    AppSettings
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

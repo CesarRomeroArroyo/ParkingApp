@@ -1,13 +1,18 @@
 <nav class="navParking">
     <div class="side-navbar">
       <div style="padding-bottom: 10px;  text-align: center"><a class="brand-logo">Parqueaderos</a></div>
-      <a>
+      <a data-activates="slide-out" class="button-collapse">
+
           <i class="fa fa-bars fa-2x" style="margin-left: 10px;"></i>
       </a>
     </div>
+    <ul id="slide-out" class="side-nav" >
+      
+      <li><a [routerLink]="['usuario']">Datos del Usuario</a></li>
+      
+    </ul>
 </nav>
-
-
+<router-outlet></router-outlet>
 
     <!--<div class="col s12 m12">
       <div class="card-panel">

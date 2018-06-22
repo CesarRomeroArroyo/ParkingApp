@@ -37,14 +37,35 @@ export class InicioComponent implements OnInit {
         this.parkingsSearch = this.parkings;
       }
     );
+    $('.button-collapse').sideNav({
+        menuWidth: 300, // Default is 300
+        edge: 'left', // Choose the horizontal origin
+        closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+        draggable: true, // Choose whether you can drag to open on touch screens,
+        onOpen: function(el) { /* Do Stuff* / }, // A function to be called when sideNav is opened
+        onClose: function(el) { /* Do Stuff  */ }, // A function to be called when sideNav is closed
+      }
+    );
   }
 
   tomarParqueadero(parking) {
-    parking.userInParking = this.user;
-    parking.parkingState = false;
-    this.vehiculos = parking.userInParking.userVehicles;
-    this.pakingSelect = parking;
-    $('#modalVehiculo').modal('open');
+    Swal({
+      title: '',
+      text: 'Esta seguro de tomar el parqueadero?',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Si',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.value) {
+        parking.userInParking = this.user;
+        parking.parkingState = false;
+        this.vehiculos = parking.userInParking.userVehicles;
+        this.pakingSelect = parking;
+        $('#modalVehiculo').modal('open');
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+      }
+    });
   }
 
   guardarParqueaderoTomado($event) {
@@ -55,12 +76,24 @@ export class InicioComponent implements OnInit {
   }
 
   desocuparParqueadero(parking) {
-    parking.parkingState = true;
-    parking.userInParking = '';
-    parking.userVehicle = '';
-    this.getParking = false;
-    this.service.actualizarDatos('parking', parking, parking.id);
-    Swal('', 'Has liberado el parqueadero', 'success');
+    Swal({
+      title: '',
+      text: 'Esta seguro de desocupar el parqueadero?',
+      type: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Si',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if (result.value) {
+        parking.parkingState = true;
+        parking.userInParking = '';
+        parking.userVehicle = '';
+        this.getParking = false;
+        this.service.actualizarDatos('parking', parking, parking.id);
+        Swal('', 'Has liberado el parqueadero', 'success');
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+      }
+    });
   }
 
   validarBotonDesocupar(parking) {
